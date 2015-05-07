@@ -46,13 +46,6 @@ public class Main {
         new PatternLayout("%d{ISO8601} %-5p  %C{2} (%M:%L) - %m%n") ));
   }
   
-  private static void usage() {
-    System.out.println(
-        "Usage: Main [-h] [-d <dict>]n" +
-        "    -d <dict> Parse dictionary file <dict>"); 
-    System.exit(1);
-  }
-
   private static ArrayList<String> read(String name) throws IOException {
     ArrayList<String> dict = new ArrayList<>();
     
@@ -75,6 +68,8 @@ public class Main {
     while ( ct < dict.size() ) {
       ArrayList<Task> tasks = new ArrayList<>();
       while ( true ) {
+        if ( tasks.size() >= thread_ct || ct >= dict.size() ) break;
+        
         word = dict.get(ct++);
         if ( processed.contains(word) ) {
           log.info("already processed " + word);
@@ -82,7 +77,6 @@ public class Main {
         }
         
         tasks.add(new Task(word));
-        if ( tasks.size() >= thread_ct || ct >= dict.size() ) break;
       }
 
       List<Future<HashMap<String, Integer>>> futures = null;

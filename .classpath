@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/myroot/workspace-java/thirdparty/getopt-1.0.13.jar"/>
 	<classpathentry kind="lib" path="/myroot/workspace-java/thirdparty/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/myroot/workspace-java/thirdparty/edu.mit.jwi_2.2.3_jdk.jar"/>
 	<classpathentry kind="output" path="bin"/>
