@@ -27,7 +27,7 @@ public class Main {
   public static HashSet<String> processed = new HashSet<>();
   
   // an identifier for our clusters
-  public static int cluster_ct = 0; 
+  public static int cluster_ct = 1; 
 
   // key - cluster_ct
   // val - key -> word
@@ -104,7 +104,7 @@ public class Main {
           System.exit(1);
         }
         
-        clusters.put(String.valueOf(cluster_ct), hm);
+        clusters.put(String.valueOf(cluster_ct++), hm);
         for ( String key: hm.keySet() ) 
           processed.add(key);
       }
