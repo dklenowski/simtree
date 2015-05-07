@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+version = '3.3'
+project.group = 'com.orbious'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Wordnet Similiarity Tree'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+configurations {
+  all*.exclude group: 'javax.mail', module: 'mail'
+  all*.exclude group: 'javax.jms', module: 'jms'
+  all*.exclude group: 'com.sun.jdmk', module: 'jmxtools'
+  all*.exclude group: 'com.sun.jmx', module: 'jmxri'
+}
+
+dependencies {
+    compile group: 'log4j', name: 'log4j', version: '1.2.15'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
+        }
+    }
+}
+
+task writecp(mustRunAfter: build) << {
+  String scriptname = "setclasspath.sh"
+  println "Writing classpath to " + scriptname
+
+  File f = new File(scriptname)
+  f.setExecutable(true)
+  f.text = "export CLASSPATH=" + sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':') + "\n"
+}
